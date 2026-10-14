@@ -1,0 +1,63 @@
+{
+  "version": "1.4",
+  "timestamp": "1791981936",
+  "disturbance": [
+    {
+      "id": "0",
+      "title": "Bruxelles-Midi - Namur : Moins de trains",
+      "description": "La circulation des trains est interrompue entre Bruxelles-Luxembourg et Ottignies.\nLa fin des perturbations est estimée entre 15:00 et 16:00.\nSeul un train IC sur deux circule entre Bruxelles-Midi et Ottignies.\nCertains trains sont déviés via Louvain.\nEntre Bruxelles-Nord et Ottignies :\n vous pouvez voyager via Louvain.\nVous pouvez prendre des bus SNCB munis de votre ticket de train.\nÉcoutez les annonces, consultez les écrans ou planifiez votre voyage sur sncb.be ou l'app SNCB.\n\n\nCause : incident sur les voies à proximité de la gare de La Hulpe.",
+      "type": "disturbance",
+      "link": "http://www.belgianrail.be/jp/nmbs-realtime/help.exe/fr?tpl=showmap_external&tplParamHimMsgInfoGroup=trouble&messageID=114228&channelFilter=custom1&",
+      "timestamp": "1791980726",
+      "richtext": "La circulation des trains est interrompue entre Bruxelles-Luxembourg et Ottignies.\nLa fin des perturbations est estimée entre 15:00 et 16:00.\nSeul un train IC sur deux circule entre Bruxelles-Midi et Ottignies.\nCertains trains sont déviés via Louvain.\nEntre Bruxelles-Nord et Ottignies :\n vous pouvez voyager via Louvain.\nVous pouvez prendre des bus SNCB munis de votre ticket de train.\nÉcoutez les annonces, consultez les écrans ou planifiez votre voyage sur sncb.be ou l'app SNCB.\n\n\nCause : incident sur les voies à proximité de la gare de La Hulpe.",
+      "descriptionLinks": {
+        "number": "1",
+        "descriptionLink": [
+          {
+            "id": "0",
+            "link": "http://www.belgianrail.be/jp/nmbs-realtime/help.exe/fr?tpl=showmap_external&tplParamHimMsgInfoGroup=trouble&messageID=114228&channelFilter=custom1&",
+            "text": "Lire plus"
+          }
+        ]
+      }
+    },
+    {
+      "id": "1",
+      "title": "Bruxelles-Luxembourg - Ottignies : Aucun train",
+      "description": "La circulation des trains est interrompue entre Bruxelles-Luxembourg et Ottignies.\nCertains trains sont déviés via Louvain.\n\nEntre Bruxelles-Nord et Ottignies :\n vous pouvez voyager via Louvain.\n\nEntre Bruxelles-Luxembourg et Ottignies :\nVous pouvez prendre des bus SNCB munis de votre ticket de train.\n\nLa fin des perturbations est estimée entre 15:00 et 16:00.\nÉcoutez les annonces, consultez les écrans ou planifiez votre voyage sur sncb.be ou l'app SNCB.\n\n\nCause : incident sur les voies à proximité de la gare de La Hulpe.",
+      "type": "disturbance",
+      "link": "http://www.belgianrail.be/jp/nmbs-realtime/help.exe/fr?tpl=showmap_external&tplParamHimMsgInfoGroup=trouble&messageID=114223&channelFilter=custom1&",
+      "timestamp": "1791978747",
+      "richtext": "La circulation des trains est interrompue entre Bruxelles-Luxembourg et Ottignies.\nCertains trains sont déviés via Louvain.\n\nEntre Bruxelles-Nord et Ottignies :\n vous pouvez voyager via Louvain.\n\nEntre Bruxelles-Luxembourg et Ottignies :\nVous pouvez prendre des bus SNCB munis de votre ticket de train.\n\nLa fin des perturbations est estimée entre 15:00 et 16:00.\nÉcoutez les annonces, consultez les écrans ou planifiez votre voyage sur sncb.be ou l'app SNCB.\n\n\nCause : incident sur les voies à proximité de la gare de La Hulpe.",
+      "descriptionLinks": {
+        "number": "1",
+        "descriptionLink": [
+          {
+            "id": "0",
+            "link": "http://www.belgianrail.be/jp/nmbs-realtime/help.exe/fr?tpl=showmap_external&tplParamHimMsgInfoGroup=trouble&messageID=114223&channelFilter=custom1&",
+            "text": "Lire plus"
+          }
+        ]
+      }
+    },
+    {
+      "id": "2",
+      "title": "Visé - Maastricht (NL) : Aucun train",
+      "description": "Aucun train S43 Liège-Guillemins-Visé-Maastricht ne circule au-delà de Visé.\nLa circulation des trains sera perturbée jusqu'à la fin de la journée.\nPlanifiez votre voyage, juste avant votre départ.\n\n\nCause : grève sur le réseau néerlandais",
+      "type": "disturbance",
+      "link": "http://www.belgianrail.be/jp/nmbs-realtime/help.exe/fr?tpl=showmap_external&tplParamHimMsgInfoGroup=trouble&messageID=114195&channelFilter=custom1&",
+      "timestamp": "1791962464",
+      "richtext": "Aucun train S43 Liège-Guillemins-Visé-Maastricht ne circule au-delà de Visé.\nLa circulation des trains sera perturbée jusqu'à la fin de la journée.\nPlanifiez votre voyage, juste avant votre départ.\n\n\nCause : grève sur le réseau néerlandais",
+      "descriptionLinks": {
+        "number": "1",
+        "descriptionLink": [
+          {
+            "id": "0",
+            "link": "http://www.belgianrail.be/jp/nmbs-realtime/help.exe/fr?tpl=showmap_external&tplParamHimMsgInfoGroup=trouble&messageID=114195&channelFilter=custom1&",
+            "text": "Lire plus"
+          }
+        ]
+      }
+    }
+  ]
+}

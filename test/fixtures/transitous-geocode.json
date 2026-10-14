@@ -1,0 +1,55 @@
+[
+  {
+    "type": "STOP",
+    "name": "De Brouckère",
+    "id": "be-stib_6",
+    "lat": 50.849819999999994,
+    "lon": 4.352485999999999,
+    "level": -3.0,
+    "country": "BE",
+    "zip": "1000",
+    "tz": "Europe/Brussels",
+    "score": -23.149999618530273,
+    "modes": ["SUBWAY", "TRAM", "BUS"],
+    "importance": 0.0010822548065334558
+  },
+  {
+    "type": "STOP",
+    "name": "Brussel De Brouckère",
+    "id": "be-delijn_gs:delijn:300712",
+    "lat": 50.85227,
+    "lon": 4.351240000000001,
+    "country": "BE",
+    "zip": "1000",
+    "tz": "Europe/Brussels",
+    "score": -20.100000381469727,
+    "modes": ["BUS"],
+    "importance": 1.0591489626676776e-5
+  },
+  {
+    "type": "STOP",
+    "name": "SOUVRET Rue de Brouckère",
+    "id": "be-tec_tec:s-souvretruedebrouckre",
+    "lat": 50.441765,
+    "lon": 4.341417,
+    "country": "BE",
+    "zip": "6180",
+    "tz": "Europe/Brussels",
+    "score": -19.350000381469727,
+    "modes": ["BUS"],
+    "importance": 7.02570787325385e-6
+  },
+  {
+    "type": "STOP",
+    "name": "HERSTAL Rue L. de Brouckère",
+    "id": "be-tec_tec:s-herstalrueldebrouckre",
+    "lat": 50.675343000000005,
+    "lon": 5.6186430000000005,
+    "country": "BE",
+    "zip": "4040",
+    "tz": "Europe/Brussels",
+    "score": -18.600000381469727,
+    "modes": ["BUS"],
+    "importance": 4.91147011416615e-6
+  }
+]

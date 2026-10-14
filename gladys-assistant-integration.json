@@ -1,0 +1,1356 @@
+{
+  "manifest_version": 1,
+  "type": "device",
+  "name": "Belgian Mobility",
+  "description": {
+    "en": "Live departures, delays and disruptions of Belgian public transport: SNCB, STIB, De Lijn, TEC.",
+    "fr": "Départs en direct, retards et perturbations : SNCB, STIB, De Lijn et TEC dans toute la Belgique.",
+    "de": "Abfahrten, Verspätungen und Störungen des ÖPNV in Belgien: SNCB, STIB, De Lijn, TEC.",
+    "es": "Salidas, retrasos e incidencias del transporte público belga: SNCB, STIB, De Lijn, TEC."
+  },
+  "version": "0.0.0",
+  "docker_image": "ghcr.io/gboulvin/gladys-belgianmobility:0.0.0",
+  "gladys_version": ">=5.1.0",
+  "cover_image": "https://raw.githubusercontent.com/gboulvin/Gladys-BelgianMobility/main/cover.png",
+  "categories": ["services"],
+  "transports": ["cloud"],
+  "config_schema": [
+    {
+      "key": "intro",
+      "type": "section",
+      "label": {
+        "en": "Getting started",
+        "fr": "Pour commencer",
+        "de": "Erste Schritte",
+        "es": "Primeros pasos"
+      },
+      "description": {
+        "en": "Follow the train stations and the metro, tram and bus stops you use, anywhere in Belgium. Data comes from two free open APIs, no account nor key needed: iRail for the SNCB trains, Transitous for STIB, De Lijn and TEC. Use the \"Search a stop\" button below to find the identifier of a stop.",
+        "fr": "Suivez les gares et les arrêts de métro, tram et bus que vous utilisez, partout en Belgique. Les données viennent de deux API ouvertes et gratuites, sans compte ni clé : iRail pour les trains SNCB, Transitous pour la STIB, De Lijn et le TEC. Le bouton « Rechercher un arrêt » ci-dessous donne l'identifiant d'un arrêt.",
+        "de": "Folgen Sie den Bahnhöfen sowie den U-Bahn-, Tram- und Bushaltestellen, die Sie nutzen, überall in Belgien. Die Daten stammen aus zwei freien, offenen Schnittstellen ohne Konto oder Schlüssel: iRail für die SNCB-Züge, Transitous für STIB, De Lijn und TEC. Mit „Haltestelle suchen“ unten finden Sie die Kennung einer Haltestelle.",
+        "es": "Siga las estaciones de tren y las paradas de metro, tranvía y autobús que utiliza, en toda Bélgica. Los datos proceden de dos API abiertas y gratuitas, sin cuenta ni clave: iRail para los trenes de la SNCB y Transitous para STIB, De Lijn y TEC. El botón «Buscar una parada» de abajo le da el identificador de una parada."
+      },
+      "links": [
+        {
+          "url": "https://docs.irail.be",
+          "label": {
+            "en": "iRail API (SNCB)",
+            "fr": "API iRail (SNCB)",
+            "de": "iRail-API (SNCB)",
+            "es": "API iRail (SNCB)"
+          }
+        },
+        {
+          "url": "https://transitous.org",
+          "label": {
+            "en": "Transitous (STIB, De Lijn, TEC)",
+            "fr": "Transitous (STIB, De Lijn, TEC)",
+            "de": "Transitous (STIB, De Lijn, TEC)",
+            "es": "Transitous (STIB, De Lijn, TEC)"
+          }
+        }
+      ]
+    },
+    {
+      "key": "stops",
+      "type": "string",
+      "label": {
+        "en": "Stops to follow",
+        "fr": "Arrêts à suivre",
+        "de": "Haltestellen",
+        "es": "Paradas a seguir"
+      },
+      "description": {
+        "en": "Separated by \";\". An SNCB station name (Namur) or a stop identifier from \"Search a stop\" (be-stib_6). Add \"| 71, 89\" to keep only some lines.",
+        "fr": "Séparés par « ; ». Un nom de gare SNCB (Namur) ou un identifiant donné par « Rechercher un arrêt » (be-stib_6). Ajoutez « | 71, 89 » pour ne garder que certaines lignes.",
+        "de": "Getrennt durch „;“. Ein SNCB-Bahnhof (Namur) oder eine Kennung aus „Haltestelle suchen“ (be-stib_6). „| 71, 89“ behält nur einige Linien.",
+        "es": "Separadas por «;». Un nombre de estación SNCB (Namur) o un identificador de «Buscar una parada» (be-stib_6). Añada «| 71, 89» para conservar solo algunas líneas."
+      },
+      "placeholder": {
+        "en": "e.g. Namur; be-stib_6 | 1, 5",
+        "fr": "ex. Namur; be-stib_6 | 1, 5",
+        "de": "z. B. Namur; be-stib_6 | 1, 5",
+        "es": "p. ej. Namur; be-stib_6 | 1, 5"
+      },
+      "required": false
+    },
+    {
+      "key": "language",
+      "type": "select",
+      "label": {
+        "en": "Language of the texts",
+        "fr": "Langue des textes",
+        "de": "Sprache der Texte",
+        "es": "Idioma de los textos"
+      },
+      "description": {
+        "en": "Language of the summaries, scene outputs, SNCB station names and disruptions.",
+        "fr": "Langue des résumés, des sorties de scène, des noms de gares SNCB et des perturbations.",
+        "de": "Sprache der Zusammenfassungen, Szenen-Ausgaben, SNCB-Bahnhofsnamen und Störungen.",
+        "es": "Idioma de los resúmenes, salidas de escena, nombres de estaciones SNCB e incidencias."
+      },
+      "required": false,
+      "default": "fr",
+      "options": [
+        {
+          "value": "en",
+          "label": {
+            "en": "English",
+            "fr": "Anglais",
+            "de": "Englisch",
+            "es": "Inglés"
+          }
+        },
+        {
+          "value": "fr",
+          "label": {
+            "en": "French",
+            "fr": "Français",
+            "de": "Französisch",
+            "es": "Francés"
+          }
+        },
+        {
+          "value": "de",
+          "label": {
+            "en": "German",
+            "fr": "Allemand",
+            "de": "Deutsch",
+            "es": "Alemán"
+          }
+        },
+        {
+          "value": "es",
+          "label": {
+            "en": "Spanish",
+            "fr": "Espagnol",
+            "de": "Spanisch",
+            "es": "Español"
+          }
+        }
+      ]
+    },
+    {
+      "key": "delay_threshold",
+      "type": "number",
+      "label": {
+        "en": "Delay alert (minutes)",
+        "fr": "Alerte de retard (minutes)",
+        "de": "Verspätungsalarm (Minuten)",
+        "es": "Alerta de retraso (minutos)"
+      },
+      "description": {
+        "en": "A departure late by at least this many minutes fires the \"Departure delayed\" scene trigger.",
+        "fr": "Un départ en retard d'au moins ce nombre de minutes déclenche « Départ en retard » dans les scènes.",
+        "de": "Eine Abfahrt mit mindestens so vielen Minuten Verspätung löst „Abfahrt verspätet“ in Szenen aus.",
+        "es": "Una salida con al menos estos minutos de retraso activa «Salida con retraso» en las escenas."
+      },
+      "required": false,
+      "default": 5,
+      "min": 1,
+      "max": 120
+    },
+    {
+      "key": "imminent_minutes",
+      "type": "number",
+      "label": {
+        "en": "Time to leave (minutes)",
+        "fr": "Temps pour partir (minutes)",
+        "de": "Zeit zum Aufbruch (Minuten)",
+        "es": "Tiempo para salir (minutos)"
+      },
+      "description": {
+        "en": "\"Departure soon\" fires when a departure is this many minutes away (time to walk to the stop). 0 turns it off.",
+        "fr": "« Départ imminent » se déclenche quand un départ est à ce nombre de minutes (le temps de rejoindre l'arrêt). 0 le désactive.",
+        "de": "„Abfahrt in Kürze“ wird ausgelöst, wenn eine Abfahrt so viele Minuten entfernt ist (Weg zur Haltestelle). 0 schaltet es ab.",
+        "es": "«Salida inminente» se activa cuando falta este número de minutos para una salida (tiempo para llegar a la parada). 0 lo desactiva."
+      },
+      "required": false,
+      "default": 10,
+      "min": 0,
+      "max": 120
+    },
+    {
+      "key": "monitor_network",
+      "type": "boolean",
+      "label": {
+        "en": "Follow the SNCB network disruptions",
+        "fr": "Suivre les perturbations du réseau SNCB",
+        "de": "Störungen im SNCB-Netz verfolgen",
+        "es": "Seguir las incidencias de la red SNCB"
+      },
+      "description": {
+        "en": "Adds an \"SNCB network\" device and the \"New disruption\" scene trigger.",
+        "fr": "Ajoute un appareil « Réseau SNCB » et le déclencheur de scène « Nouvelle perturbation ».",
+        "de": "Fügt ein Gerät „SNCB-Netz“ und den Szenen-Auslöser „Neue Störung“ hinzu.",
+        "es": "Añade un dispositivo «Red SNCB» y el disparador de escena «Nueva incidencia»."
+      },
+      "required": false,
+      "default": true
+    },
+    {
+      "key": "poll_frequency",
+      "type": "number",
+      "label": {
+        "en": "Refresh interval (s)",
+        "fr": "Intervalle de rafraîchissement (s)",
+        "de": "Aktualisierungsintervall (s)",
+        "es": "Intervalo de actualización (s)"
+      },
+      "description": {
+        "en": "How often each stop is read, in seconds (one minute minimum).",
+        "fr": "Fréquence de lecture de chaque arrêt, en secondes (une minute minimum).",
+        "de": "Wie oft jede Haltestelle gelesen wird, in Sekunden (mindestens eine Minute).",
+        "es": "Frecuencia de lectura de cada parada, en segundos (mínimo un minuto)."
+      },
+      "required": false,
+      "default": 60,
+      "min": 60,
+      "max": 3600
+    }
+  ],
+  "actions": [
+    {
+      "key": "search_stop",
+      "label": {
+        "en": "Search a stop",
+        "fr": "Rechercher un arrêt",
+        "de": "Haltestelle suchen",
+        "es": "Buscar una parada"
+      },
+      "description": {
+        "en": "Find the identifier of a metro, tram, bus or train stop to paste in \"Stops to follow\".",
+        "fr": "Trouve l'identifiant d'un arrêt de métro, tram, bus ou train à coller dans « Arrêts à suivre ».",
+        "de": "Findet die Kennung einer U-Bahn-, Tram-, Bus- oder Zughaltestelle für „Haltestellen“.",
+        "es": "Encuentra el identificador de una parada de metro, tranvía, autobús o tren para «Paradas a seguir»."
+      },
+      "timeout_seconds": 30,
+      "fields": [
+        {
+          "key": "query",
+          "type": "string",
+          "label": {
+            "en": "Stop name",
+            "fr": "Nom de l'arrêt",
+            "de": "Name der Haltestelle",
+            "es": "Nombre de la parada"
+          },
+          "placeholder": {
+            "en": "e.g. De Brouckère",
+            "fr": "ex. De Brouckère",
+            "de": "z. B. De Brouckère",
+            "es": "p. ej. De Brouckère"
+          },
+          "required": true
+        }
+      ]
+    },
+    {
+      "key": "test_connection",
+      "label": {
+        "en": "Test the connection",
+        "fr": "Tester la connexion",
+        "de": "Verbindung testen",
+        "es": "Probar la conexión"
+      },
+      "timeout_seconds": 30
+    }
+  ],
+  "scene_triggers": [
+    {
+      "key": "departure_delayed",
+      "label": {
+        "en": "Departure delayed",
+        "fr": "Départ en retard",
+        "de": "Abfahrt verspätet",
+        "es": "Salida con retraso"
+      },
+      "description": {
+        "en": "A departure of a followed stop is late by at least the delay alert of the configuration.",
+        "fr": "Un départ d'un arrêt suivi a au moins le retard d'alerte défini dans la configuration.",
+        "de": "Eine Abfahrt einer verfolgten Haltestelle hat mindestens die eingestellte Verspätung.",
+        "es": "Una salida de una parada seguida tiene al menos el retraso de alerta configurado."
+      },
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "label": {
+            "en": "Stop",
+            "fr": "Arrêt",
+            "de": "Haltestelle",
+            "es": "Parada"
+          }
+        },
+        {
+          "key": "line",
+          "type": "string",
+          "label": {
+            "en": "Line",
+            "fr": "Ligne",
+            "de": "Linie",
+            "es": "Línea"
+          },
+          "description": {
+            "en": "Line number (71, 1...) or train type (IC, S, L...). Empty: every line.",
+            "fr": "Numéro de ligne (71, 1...) ou type de train (IC, S, L...). Vide : toutes les lignes.",
+            "de": "Liniennummer (71, 1...) oder Zugtyp (IC, S, L...). Leer: alle Linien.",
+            "es": "Número de línea (71, 1...) o tipo de tren (IC, S, L...). Vacío: todas las líneas."
+          },
+          "placeholder": {
+            "en": "e.g. 71 or IC",
+            "fr": "ex. 71 ou IC",
+            "de": "z. B. 71 oder IC",
+            "es": "p. ej. 71 o IC"
+          }
+        },
+        {
+          "key": "vehicle",
+          "type": "string",
+          "label": {
+            "en": "Train or vehicle",
+            "fr": "Train ou véhicule",
+            "de": "Zug oder Fahrzeug",
+            "es": "Tren o vehículo"
+          },
+          "description": {
+            "en": "A precise train, e.g. IC 2113 (your daily train). Empty: every one.",
+            "fr": "Un train précis, ex. IC 2113 (votre train quotidien). Vide : tous.",
+            "de": "Ein bestimmter Zug, z. B. IC 2113 (Ihr täglicher Zug). Leer: alle.",
+            "es": "Un tren concreto, p. ej. IC 2113 (su tren diario). Vacío: todos."
+          },
+          "placeholder": {
+            "en": "e.g. IC 2113",
+            "fr": "ex. IC 2113",
+            "de": "z. B. IC 2113",
+            "es": "p. ej. IC 2113"
+          }
+        }
+      ],
+      "variables": [
+        {
+          "key": "line",
+          "type": "string",
+          "label": {
+            "en": "Line",
+            "fr": "Ligne",
+            "de": "Linie",
+            "es": "Línea"
+          }
+        },
+        {
+          "key": "vehicle",
+          "type": "string",
+          "label": {
+            "en": "Train or vehicle",
+            "fr": "Train ou véhicule",
+            "de": "Zug oder Fahrzeug",
+            "es": "Tren o vehículo"
+          }
+        },
+        {
+          "key": "destination",
+          "type": "string",
+          "label": {
+            "en": "Destination",
+            "fr": "Destination",
+            "de": "Ziel",
+            "es": "Destino"
+          }
+        },
+        {
+          "key": "stop_name",
+          "type": "string",
+          "label": {
+            "en": "Stop name",
+            "fr": "Nom de l'arrêt",
+            "de": "Name der Haltestelle",
+            "es": "Nombre de la parada"
+          }
+        },
+        {
+          "key": "operator",
+          "type": "string",
+          "label": {
+            "en": "Operator",
+            "fr": "Opérateur",
+            "de": "Verkehrsbetrieb",
+            "es": "Operador"
+          }
+        },
+        {
+          "key": "mode",
+          "type": "string",
+          "label": {
+            "en": "Mode (train, metro, tram, bus)",
+            "fr": "Mode (train, métro, tram, bus)",
+            "de": "Verkehrsmittel (Zug, U-Bahn, Tram, Bus)",
+            "es": "Modo (tren, metro, tranvía, autobús)"
+          }
+        },
+        {
+          "key": "scheduled_time",
+          "type": "string",
+          "label": {
+            "en": "Scheduled time",
+            "fr": "Heure prévue",
+            "de": "Planmäßige Zeit",
+            "es": "Hora prevista"
+          }
+        },
+        {
+          "key": "expected_time",
+          "type": "string",
+          "label": {
+            "en": "Expected time",
+            "fr": "Heure estimée",
+            "de": "Erwartete Zeit",
+            "es": "Hora estimada"
+          }
+        },
+        {
+          "key": "delay_minutes",
+          "type": "number",
+          "label": {
+            "en": "Delay (minutes)",
+            "fr": "Retard (minutes)",
+            "de": "Verspätung (Minuten)",
+            "es": "Retraso (minutos)"
+          }
+        },
+        {
+          "key": "minutes",
+          "type": "number",
+          "label": {
+            "en": "Leaves in (minutes)",
+            "fr": "Part dans (minutes)",
+            "de": "Abfahrt in (Minuten)",
+            "es": "Sale en (minutos)"
+          }
+        },
+        {
+          "key": "platform",
+          "type": "string",
+          "label": {
+            "en": "Platform",
+            "fr": "Voie",
+            "de": "Gleis",
+            "es": "Vía"
+          }
+        }
+      ]
+    },
+    {
+      "key": "departure_cancelled",
+      "label": {
+        "en": "Departure cancelled",
+        "fr": "Départ supprimé",
+        "de": "Abfahrt entfällt",
+        "es": "Salida cancelada"
+      },
+      "description": {
+        "en": "A departure of a followed stop is cancelled.",
+        "fr": "Un départ d'un arrêt suivi est supprimé.",
+        "de": "Eine Abfahrt einer verfolgten Haltestelle entfällt.",
+        "es": "Una salida de una parada seguida está cancelada."
+      },
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "label": {
+            "en": "Stop",
+            "fr": "Arrêt",
+            "de": "Haltestelle",
+            "es": "Parada"
+          }
+        },
+        {
+          "key": "line",
+          "type": "string",
+          "label": {
+            "en": "Line",
+            "fr": "Ligne",
+            "de": "Linie",
+            "es": "Línea"
+          },
+          "description": {
+            "en": "Line number (71, 1...) or train type (IC, S, L...). Empty: every line.",
+            "fr": "Numéro de ligne (71, 1...) ou type de train (IC, S, L...). Vide : toutes les lignes.",
+            "de": "Liniennummer (71, 1...) oder Zugtyp (IC, S, L...). Leer: alle Linien.",
+            "es": "Número de línea (71, 1...) o tipo de tren (IC, S, L...). Vacío: todas las líneas."
+          },
+          "placeholder": {
+            "en": "e.g. 71 or IC",
+            "fr": "ex. 71 ou IC",
+            "de": "z. B. 71 oder IC",
+            "es": "p. ej. 71 o IC"
+          }
+        },
+        {
+          "key": "vehicle",
+          "type": "string",
+          "label": {
+            "en": "Train or vehicle",
+            "fr": "Train ou véhicule",
+            "de": "Zug oder Fahrzeug",
+            "es": "Tren o vehículo"
+          },
+          "description": {
+            "en": "A precise train, e.g. IC 2113 (your daily train). Empty: every one.",
+            "fr": "Un train précis, ex. IC 2113 (votre train quotidien). Vide : tous.",
+            "de": "Ein bestimmter Zug, z. B. IC 2113 (Ihr täglicher Zug). Leer: alle.",
+            "es": "Un tren concreto, p. ej. IC 2113 (su tren diario). Vacío: todos."
+          },
+          "placeholder": {
+            "en": "e.g. IC 2113",
+            "fr": "ex. IC 2113",
+            "de": "z. B. IC 2113",
+            "es": "p. ej. IC 2113"
+          }
+        }
+      ],
+      "variables": [
+        {
+          "key": "line",
+          "type": "string",
+          "label": {
+            "en": "Line",
+            "fr": "Ligne",
+            "de": "Linie",
+            "es": "Línea"
+          }
+        },
+        {
+          "key": "vehicle",
+          "type": "string",
+          "label": {
+            "en": "Train or vehicle",
+            "fr": "Train ou véhicule",
+            "de": "Zug oder Fahrzeug",
+            "es": "Tren o vehículo"
+          }
+        },
+        {
+          "key": "destination",
+          "type": "string",
+          "label": {
+            "en": "Destination",
+            "fr": "Destination",
+            "de": "Ziel",
+            "es": "Destino"
+          }
+        },
+        {
+          "key": "stop_name",
+          "type": "string",
+          "label": {
+            "en": "Stop name",
+            "fr": "Nom de l'arrêt",
+            "de": "Name der Haltestelle",
+            "es": "Nombre de la parada"
+          }
+        },
+        {
+          "key": "operator",
+          "type": "string",
+          "label": {
+            "en": "Operator",
+            "fr": "Opérateur",
+            "de": "Verkehrsbetrieb",
+            "es": "Operador"
+          }
+        },
+        {
+          "key": "mode",
+          "type": "string",
+          "label": {
+            "en": "Mode (train, metro, tram, bus)",
+            "fr": "Mode (train, métro, tram, bus)",
+            "de": "Verkehrsmittel (Zug, U-Bahn, Tram, Bus)",
+            "es": "Modo (tren, metro, tranvía, autobús)"
+          }
+        },
+        {
+          "key": "scheduled_time",
+          "type": "string",
+          "label": {
+            "en": "Scheduled time",
+            "fr": "Heure prévue",
+            "de": "Planmäßige Zeit",
+            "es": "Hora prevista"
+          }
+        },
+        {
+          "key": "expected_time",
+          "type": "string",
+          "label": {
+            "en": "Expected time",
+            "fr": "Heure estimée",
+            "de": "Erwartete Zeit",
+            "es": "Hora estimada"
+          }
+        },
+        {
+          "key": "delay_minutes",
+          "type": "number",
+          "label": {
+            "en": "Delay (minutes)",
+            "fr": "Retard (minutes)",
+            "de": "Verspätung (Minuten)",
+            "es": "Retraso (minutos)"
+          }
+        },
+        {
+          "key": "minutes",
+          "type": "number",
+          "label": {
+            "en": "Leaves in (minutes)",
+            "fr": "Part dans (minutes)",
+            "de": "Abfahrt in (Minuten)",
+            "es": "Sale en (minutos)"
+          }
+        },
+        {
+          "key": "platform",
+          "type": "string",
+          "label": {
+            "en": "Platform",
+            "fr": "Voie",
+            "de": "Gleis",
+            "es": "Vía"
+          }
+        }
+      ]
+    },
+    {
+      "key": "departure_imminent",
+      "label": {
+        "en": "Departure soon",
+        "fr": "Départ imminent",
+        "de": "Abfahrt in Kürze",
+        "es": "Salida inminente"
+      },
+      "description": {
+        "en": "A departure of a followed stop leaves within the \"time to leave\" of the configuration.",
+        "fr": "Un départ d'un arrêt suivi part dans le « temps pour partir » défini dans la configuration.",
+        "de": "Eine Abfahrt einer verfolgten Haltestelle fährt innerhalb der eingestellten „Zeit zum Aufbruch“.",
+        "es": "Una salida de una parada seguida sale dentro del «tiempo para salir» configurado."
+      },
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "label": {
+            "en": "Stop",
+            "fr": "Arrêt",
+            "de": "Haltestelle",
+            "es": "Parada"
+          }
+        },
+        {
+          "key": "line",
+          "type": "string",
+          "label": {
+            "en": "Line",
+            "fr": "Ligne",
+            "de": "Linie",
+            "es": "Línea"
+          },
+          "description": {
+            "en": "Line number (71, 1...) or train type (IC, S, L...). Empty: every line.",
+            "fr": "Numéro de ligne (71, 1...) ou type de train (IC, S, L...). Vide : toutes les lignes.",
+            "de": "Liniennummer (71, 1...) oder Zugtyp (IC, S, L...). Leer: alle Linien.",
+            "es": "Número de línea (71, 1...) o tipo de tren (IC, S, L...). Vacío: todas las líneas."
+          },
+          "placeholder": {
+            "en": "e.g. 71 or IC",
+            "fr": "ex. 71 ou IC",
+            "de": "z. B. 71 oder IC",
+            "es": "p. ej. 71 o IC"
+          }
+        },
+        {
+          "key": "vehicle",
+          "type": "string",
+          "label": {
+            "en": "Train or vehicle",
+            "fr": "Train ou véhicule",
+            "de": "Zug oder Fahrzeug",
+            "es": "Tren o vehículo"
+          },
+          "description": {
+            "en": "A precise train, e.g. IC 2113 (your daily train). Empty: every one.",
+            "fr": "Un train précis, ex. IC 2113 (votre train quotidien). Vide : tous.",
+            "de": "Ein bestimmter Zug, z. B. IC 2113 (Ihr täglicher Zug). Leer: alle.",
+            "es": "Un tren concreto, p. ej. IC 2113 (su tren diario). Vacío: todos."
+          },
+          "placeholder": {
+            "en": "e.g. IC 2113",
+            "fr": "ex. IC 2113",
+            "de": "z. B. IC 2113",
+            "es": "p. ej. IC 2113"
+          }
+        }
+      ],
+      "variables": [
+        {
+          "key": "line",
+          "type": "string",
+          "label": {
+            "en": "Line",
+            "fr": "Ligne",
+            "de": "Linie",
+            "es": "Línea"
+          }
+        },
+        {
+          "key": "vehicle",
+          "type": "string",
+          "label": {
+            "en": "Train or vehicle",
+            "fr": "Train ou véhicule",
+            "de": "Zug oder Fahrzeug",
+            "es": "Tren o vehículo"
+          }
+        },
+        {
+          "key": "destination",
+          "type": "string",
+          "label": {
+            "en": "Destination",
+            "fr": "Destination",
+            "de": "Ziel",
+            "es": "Destino"
+          }
+        },
+        {
+          "key": "stop_name",
+          "type": "string",
+          "label": {
+            "en": "Stop name",
+            "fr": "Nom de l'arrêt",
+            "de": "Name der Haltestelle",
+            "es": "Nombre de la parada"
+          }
+        },
+        {
+          "key": "operator",
+          "type": "string",
+          "label": {
+            "en": "Operator",
+            "fr": "Opérateur",
+            "de": "Verkehrsbetrieb",
+            "es": "Operador"
+          }
+        },
+        {
+          "key": "mode",
+          "type": "string",
+          "label": {
+            "en": "Mode (train, metro, tram, bus)",
+            "fr": "Mode (train, métro, tram, bus)",
+            "de": "Verkehrsmittel (Zug, U-Bahn, Tram, Bus)",
+            "es": "Modo (tren, metro, tranvía, autobús)"
+          }
+        },
+        {
+          "key": "scheduled_time",
+          "type": "string",
+          "label": {
+            "en": "Scheduled time",
+            "fr": "Heure prévue",
+            "de": "Planmäßige Zeit",
+            "es": "Hora prevista"
+          }
+        },
+        {
+          "key": "expected_time",
+          "type": "string",
+          "label": {
+            "en": "Expected time",
+            "fr": "Heure estimée",
+            "de": "Erwartete Zeit",
+            "es": "Hora estimada"
+          }
+        },
+        {
+          "key": "delay_minutes",
+          "type": "number",
+          "label": {
+            "en": "Delay (minutes)",
+            "fr": "Retard (minutes)",
+            "de": "Verspätung (Minuten)",
+            "es": "Retraso (minutos)"
+          }
+        },
+        {
+          "key": "minutes",
+          "type": "number",
+          "label": {
+            "en": "Leaves in (minutes)",
+            "fr": "Part dans (minutes)",
+            "de": "Abfahrt in (Minuten)",
+            "es": "Sale en (minutos)"
+          }
+        },
+        {
+          "key": "platform",
+          "type": "string",
+          "label": {
+            "en": "Platform",
+            "fr": "Voie",
+            "de": "Gleis",
+            "es": "Vía"
+          }
+        }
+      ]
+    },
+    {
+      "key": "network_disruption",
+      "label": {
+        "en": "New SNCB disruption",
+        "fr": "Nouvelle perturbation SNCB",
+        "de": "Neue SNCB-Störung",
+        "es": "Nueva incidencia SNCB"
+      },
+      "description": {
+        "en": "A disruption or planned works appeared on the SNCB rail network.",
+        "fr": "Une perturbation ou des travaux sont apparus sur le réseau ferroviaire SNCB.",
+        "de": "Eine Störung oder Bauarbeiten im SNCB-Bahnnetz.",
+        "es": "Una incidencia u obras han aparecido en la red ferroviaria de la SNCB."
+      },
+      "fields": [
+        {
+          "key": "type",
+          "type": "select",
+          "label": {
+            "en": "Kind",
+            "fr": "Type",
+            "de": "Art",
+            "es": "Tipo"
+          },
+          "options": [
+            {
+              "value": "disturbance",
+              "label": {
+                "en": "Disruption",
+                "fr": "Perturbation",
+                "de": "Störung",
+                "es": "Incidencia"
+              }
+            },
+            {
+              "value": "planned",
+              "label": {
+                "en": "Planned works",
+                "fr": "Travaux prévus",
+                "de": "Geplante Bauarbeiten",
+                "es": "Obras previstas"
+              }
+            }
+          ]
+        }
+      ],
+      "variables": [
+        {
+          "key": "title",
+          "type": "string",
+          "label": {
+            "en": "Title",
+            "fr": "Titre",
+            "de": "Titel",
+            "es": "Título"
+          }
+        },
+        {
+          "key": "description",
+          "type": "string",
+          "label": {
+            "en": "Description",
+            "fr": "Description",
+            "de": "Beschreibung",
+            "es": "Descripción"
+          }
+        }
+      ]
+    }
+  ],
+  "scene_actions": [
+    {
+      "key": "get_next_departure",
+      "label": {
+        "en": "Get the next departure",
+        "fr": "Obtenir le prochain départ",
+        "de": "Nächste Abfahrt abrufen",
+        "es": "Obtener la próxima salida"
+      },
+      "description": {
+        "en": "Reads the next departure of a followed stop, for a message or a condition.",
+        "fr": "Lit le prochain départ d'un arrêt suivi, pour un message ou une condition.",
+        "de": "Liest die nächste Abfahrt einer verfolgten Haltestelle, für eine Nachricht oder Bedingung.",
+        "es": "Lee la próxima salida de una parada seguida, para un mensaje o una condición."
+      },
+      "timeout_seconds": 30,
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "label": {
+            "en": "Stop",
+            "fr": "Arrêt",
+            "de": "Haltestelle",
+            "es": "Parada"
+          },
+          "required": true
+        },
+        {
+          "key": "line",
+          "type": "string",
+          "label": {
+            "en": "Line",
+            "fr": "Ligne",
+            "de": "Linie",
+            "es": "Línea"
+          },
+          "description": {
+            "en": "Line number or train type. Empty: every line.",
+            "fr": "Numéro de ligne ou type de train. Vide : toutes les lignes.",
+            "de": "Liniennummer oder Zugtyp. Leer: alle Linien.",
+            "es": "Número de línea o tipo de tren. Vacío: todas las líneas."
+          },
+          "placeholder": {
+            "en": "e.g. 71 or IC",
+            "fr": "ex. 71 ou IC",
+            "de": "z. B. 71 oder IC",
+            "es": "p. ej. 71 o IC"
+          }
+        },
+        {
+          "key": "destination",
+          "type": "string",
+          "label": {
+            "en": "Towards",
+            "fr": "En direction de",
+            "de": "Richtung",
+            "es": "Dirección"
+          },
+          "description": {
+            "en": "Part of the destination name. Empty: every destination.",
+            "fr": "Partie du nom de la destination. Vide : toutes.",
+            "de": "Teil des Zielnamens. Leer: alle Ziele.",
+            "es": "Parte del nombre del destino. Vacío: todos."
+          },
+          "placeholder": {
+            "en": "e.g. Bruxelles",
+            "fr": "ex. Bruxelles",
+            "de": "z. B. Bruxelles",
+            "es": "p. ej. Bruxelles"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "key": "found",
+          "type": "boolean",
+          "label": {
+            "en": "Departure found",
+            "fr": "Départ trouvé",
+            "de": "Abfahrt gefunden",
+            "es": "Salida encontrada"
+          }
+        },
+        {
+          "key": "line",
+          "type": "string",
+          "label": {
+            "en": "Line",
+            "fr": "Ligne",
+            "de": "Linie",
+            "es": "Línea"
+          }
+        },
+        {
+          "key": "vehicle",
+          "type": "string",
+          "label": {
+            "en": "Train or vehicle",
+            "fr": "Train ou véhicule",
+            "de": "Zug oder Fahrzeug",
+            "es": "Tren o vehículo"
+          }
+        },
+        {
+          "key": "destination",
+          "type": "string",
+          "label": {
+            "en": "Destination",
+            "fr": "Destination",
+            "de": "Ziel",
+            "es": "Destino"
+          }
+        },
+        {
+          "key": "operator",
+          "type": "string",
+          "label": {
+            "en": "Operator",
+            "fr": "Opérateur",
+            "de": "Verkehrsbetrieb",
+            "es": "Operador"
+          }
+        },
+        {
+          "key": "departure_time",
+          "type": "string",
+          "label": {
+            "en": "Expected time",
+            "fr": "Heure estimée",
+            "de": "Erwartete Zeit",
+            "es": "Hora estimada"
+          }
+        },
+        {
+          "key": "scheduled_time",
+          "type": "string",
+          "label": {
+            "en": "Scheduled time",
+            "fr": "Heure prévue",
+            "de": "Planmäßige Zeit",
+            "es": "Hora prevista"
+          }
+        },
+        {
+          "key": "minutes",
+          "type": "number",
+          "label": {
+            "en": "Leaves in (minutes)",
+            "fr": "Part dans (minutes)",
+            "de": "Abfahrt in (Minuten)",
+            "es": "Sale en (minutos)"
+          }
+        },
+        {
+          "key": "delay_minutes",
+          "type": "number",
+          "label": {
+            "en": "Delay (minutes)",
+            "fr": "Retard (minutes)",
+            "de": "Verspätung (Minuten)",
+            "es": "Retraso (minutos)"
+          }
+        },
+        {
+          "key": "platform",
+          "type": "string",
+          "label": {
+            "en": "Platform",
+            "fr": "Voie",
+            "de": "Gleis",
+            "es": "Vía"
+          }
+        },
+        {
+          "key": "summary",
+          "type": "string",
+          "label": {
+            "en": "Next 3 departures",
+            "fr": "3 prochains départs",
+            "de": "Nächste 3 Abfahrten",
+            "es": "3 próximas salidas"
+          }
+        }
+      ]
+    },
+    {
+      "key": "plan_train_journey",
+      "label": {
+        "en": "Plan a train journey",
+        "fr": "Planifier un trajet en train",
+        "de": "Zugreise planen",
+        "es": "Planificar un viaje en tren"
+      },
+      "description": {
+        "en": "Next SNCB train between two stations, now or at a given time.",
+        "fr": "Prochain train SNCB entre deux gares, maintenant ou à une heure donnée.",
+        "de": "Nächster SNCB-Zug zwischen zwei Bahnhöfen, jetzt oder zu einer Uhrzeit.",
+        "es": "Próximo tren SNCB entre dos estaciones, ahora o a una hora dada."
+      },
+      "timeout_seconds": 30,
+      "fields": [
+        {
+          "key": "from",
+          "type": "string",
+          "required": true,
+          "label": {
+            "en": "From station",
+            "fr": "Gare de départ",
+            "de": "Abfahrtsbahnhof",
+            "es": "Estación de salida"
+          },
+          "placeholder": {
+            "en": "e.g. Namur",
+            "fr": "ex. Namur",
+            "de": "z. B. Namur",
+            "es": "p. ej. Namur"
+          }
+        },
+        {
+          "key": "to",
+          "type": "string",
+          "required": true,
+          "label": {
+            "en": "To station",
+            "fr": "Gare d'arrivée",
+            "de": "Zielbahnhof",
+            "es": "Estación de llegada"
+          },
+          "placeholder": {
+            "en": "e.g. Bruxelles-Central",
+            "fr": "ex. Bruxelles-Central",
+            "de": "z. B. Brüssel-Zentral",
+            "es": "p. ej. Bruxelles-Central"
+          }
+        },
+        {
+          "key": "time",
+          "type": "string",
+          "label": {
+            "en": "Departure time (HH:MM)",
+            "fr": "Heure de départ (HH:MM)",
+            "de": "Abfahrtszeit (HH:MM)",
+            "es": "Hora de salida (HH:MM)"
+          },
+          "description": {
+            "en": "Empty: now.",
+            "fr": "Vide : maintenant.",
+            "de": "Leer: jetzt.",
+            "es": "Vacío: ahora."
+          },
+          "placeholder": {
+            "en": "e.g. 07:45",
+            "fr": "ex. 07:45",
+            "de": "z. B. 07:45",
+            "es": "p. ej. 07:45"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "key": "found",
+          "type": "boolean",
+          "label": {
+            "en": "Journey found",
+            "fr": "Trajet trouvé",
+            "de": "Verbindung gefunden",
+            "es": "Viaje encontrado"
+          }
+        },
+        {
+          "key": "train",
+          "type": "string",
+          "label": {
+            "en": "Train",
+            "fr": "Train",
+            "de": "Zug",
+            "es": "Tren"
+          }
+        },
+        {
+          "key": "departure_time",
+          "type": "string",
+          "label": {
+            "en": "Departure time",
+            "fr": "Heure de départ",
+            "de": "Abfahrtszeit",
+            "es": "Hora de salida"
+          }
+        },
+        {
+          "key": "arrival_time",
+          "type": "string",
+          "label": {
+            "en": "Arrival time",
+            "fr": "Heure d'arrivée",
+            "de": "Ankunftszeit",
+            "es": "Hora de llegada"
+          }
+        },
+        {
+          "key": "duration_minutes",
+          "type": "number",
+          "label": {
+            "en": "Duration (minutes)",
+            "fr": "Durée (minutes)",
+            "de": "Dauer (Minuten)",
+            "es": "Duración (minutos)"
+          }
+        },
+        {
+          "key": "transfers",
+          "type": "number",
+          "label": {
+            "en": "Transfers",
+            "fr": "Correspondances",
+            "de": "Umstiege",
+            "es": "Transbordos"
+          }
+        },
+        {
+          "key": "delay_minutes",
+          "type": "number",
+          "label": {
+            "en": "Delay (minutes)",
+            "fr": "Retard (minutes)",
+            "de": "Verspätung (Minuten)",
+            "es": "Retraso (minutos)"
+          }
+        },
+        {
+          "key": "platform",
+          "type": "string",
+          "label": {
+            "en": "Platform",
+            "fr": "Voie",
+            "de": "Gleis",
+            "es": "Vía"
+          }
+        },
+        {
+          "key": "summary",
+          "type": "string",
+          "label": {
+            "en": "Next 3 journeys",
+            "fr": "3 prochains trajets",
+            "de": "Nächste 3 Verbindungen",
+            "es": "3 próximos viajes"
+          }
+        }
+      ]
+    },
+    {
+      "key": "get_network_status",
+      "label": {
+        "en": "Get the SNCB network status",
+        "fr": "Obtenir l'état du réseau SNCB",
+        "de": "SNCB-Netzstatus abrufen",
+        "es": "Obtener el estado de la red SNCB"
+      },
+      "description": {
+        "en": "Is the rail network disrupted right now? With the list of disruptions.",
+        "fr": "Le réseau ferroviaire est-il perturbé ? Avec la liste des perturbations.",
+        "de": "Ist das Bahnnetz gerade gestört? Mit der Liste der Störungen.",
+        "es": "¿Está la red ferroviaria afectada ahora? Con la lista de incidencias."
+      },
+      "timeout_seconds": 30,
+      "outputs": [
+        {
+          "key": "disrupted",
+          "type": "boolean",
+          "label": {
+            "en": "Network disrupted",
+            "fr": "Réseau perturbé",
+            "de": "Netz gestört",
+            "es": "Red afectada"
+          }
+        },
+        {
+          "key": "disruption_count",
+          "type": "number",
+          "label": {
+            "en": "Disruptions",
+            "fr": "Perturbations",
+            "de": "Störungen",
+            "es": "Incidencias"
+          }
+        },
+        {
+          "key": "planned_works_count",
+          "type": "number",
+          "label": {
+            "en": "Planned works",
+            "fr": "Travaux prévus",
+            "de": "Geplante Bauarbeiten",
+            "es": "Obras previstas"
+          }
+        },
+        {
+          "key": "summary",
+          "type": "string",
+          "label": {
+            "en": "Summary",
+            "fr": "Résumé",
+            "de": "Zusammenfassung",
+            "es": "Resumen"
+          }
+        }
+      ]
+    }
+  ],
+  "widgets": [
+    {
+      "key": "departures",
+      "label": {
+        "en": "Departures board",
+        "fr": "Tableau des départs",
+        "de": "Abfahrtstafel",
+        "es": "Panel de salidas"
+      },
+      "description": {
+        "en": "Next departures of a followed stop, with delays, cancellations and platforms.",
+        "fr": "Prochains départs d'un arrêt suivi, avec retards, suppressions et voies.",
+        "de": "Nächste Abfahrten einer Haltestelle, mit Verspätungen, Ausfällen und Gleisen.",
+        "es": "Próximas salidas de una parada seguida, con retrasos, cancelaciones y vías."
+      },
+      "icon": "navigation",
+      "settings": [
+        {
+          "key": "stop",
+          "type": "select",
+          "source": "devices",
+          "required": true,
+          "label": {
+            "en": "Stop",
+            "fr": "Arrêt",
+            "de": "Haltestelle",
+            "es": "Parada"
+          }
+        },
+        {
+          "key": "count",
+          "type": "number",
+          "label": {
+            "en": "Departures shown",
+            "fr": "Départs affichés",
+            "de": "Angezeigte Abfahrten",
+            "es": "Salidas mostradas"
+          },
+          "default": 5,
+          "min": 1,
+          "max": 8
+        }
+      ],
+      "action_timeout_seconds": 15
+    },
+    {
+      "key": "network_status",
+      "label": {
+        "en": "SNCB network",
+        "fr": "Réseau SNCB",
+        "de": "SNCB-Netz",
+        "es": "Red SNCB"
+      },
+      "description": {
+        "en": "Current disruptions and planned works on the Belgian rail network.",
+        "fr": "Perturbations en cours et travaux prévus sur le réseau ferroviaire belge.",
+        "de": "Aktuelle Störungen und geplante Bauarbeiten im belgischen Bahnnetz.",
+        "es": "Incidencias actuales y obras previstas en la red ferroviaria belga."
+      },
+      "icon": "alert-circle"
+    }
+  ]
+}

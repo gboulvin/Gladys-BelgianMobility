@@ -1,0 +1,240 @@
+{
+  "version": "1.4",
+  "timestamp": "1791981978",
+  "station": "Namur",
+  "stationinfo": {
+    "@id": "http://irail.be/stations/NMBS/008863008",
+    "id": "BE.NMBS.008863008",
+    "name": "Namur",
+    "locationX": "4.86222",
+    "locationY": "50.468794",
+    "standardname": "Namur"
+  },
+  "departures": {
+    "number": "6",
+    "departure": [
+      {
+        "id": "0",
+        "station": "Luxembourg",
+        "stationinfo": {
+          "@id": "http://irail.be/stations/NMBS/008200100",
+          "id": "BE.NMBS.008200100",
+          "name": "Luxembourg",
+          "locationX": "6.133331",
+          "locationY": "49.599996",
+          "standardname": "Lëtzebuerg"
+        },
+        "time": "1791981900",
+        "delay": "1200",
+        "canceled": "0",
+        "left": "0",
+        "isExtra": "0",
+        "vehicle": "BE.NMBS.IC2113",
+        "vehicleinfo": {
+          "name": "BE.NMBS.IC2113",
+          "shortname": "IC 2113",
+          "number": "2113",
+          "type": "IC",
+          "locationX": "0",
+          "locationY": "0",
+          "@id": "http://irail.be/vehicle/IC2113"
+        },
+        "platform": "10",
+        "platforminfo": {
+          "name": "10",
+          "normal": "1"
+        },
+        "occupancy": {
+          "@id": "http://api.irail.be/terms/low",
+          "name": "low"
+        },
+        "departureConnection": "http://irail.be/connections/8863008/20261014/IC2113"
+      },
+      {
+        "id": "1",
+        "station": "Wavre",
+        "stationinfo": {
+          "@id": "http://irail.be/stations/NMBS/008811726",
+          "id": "BE.NMBS.008811726",
+          "name": "Wavre",
+          "locationX": "4.604778",
+          "locationY": "50.716267",
+          "standardname": "Wavre"
+        },
+        "time": "1791982020",
+        "delay": "0",
+        "canceled": "0",
+        "left": "0",
+        "isExtra": "0",
+        "vehicle": "BE.NMBS.S614586",
+        "vehicleinfo": {
+          "name": "BE.NMBS.S614586",
+          "shortname": "S61 4586",
+          "number": "4586",
+          "type": "S61",
+          "locationX": "0",
+          "locationY": "0",
+          "@id": "http://irail.be/vehicle/S614586"
+        },
+        "platform": "5",
+        "platforminfo": {
+          "name": "5",
+          "normal": "1"
+        },
+        "occupancy": {
+          "@id": "http://api.irail.be/terms/low",
+          "name": "low"
+        },
+        "departureConnection": "http://irail.be/connections/8863008/20261014/S614586"
+      },
+      {
+        "id": "2",
+        "station": "Jambes",
+        "stationinfo": {
+          "@id": "http://irail.be/stations/NMBS/008863115",
+          "id": "BE.NMBS.008863115",
+          "name": "Jambes",
+          "locationX": "4.876144",
+          "locationY": "50.454843",
+          "standardname": "Jambes"
+        },
+        "time": "1791982140",
+        "delay": "0",
+        "canceled": "0",
+        "left": "0",
+        "isExtra": "0",
+        "vehicle": "BE.NMBS.S614163",
+        "vehicleinfo": {
+          "name": "BE.NMBS.S614163",
+          "shortname": "S61 4163",
+          "number": "4163",
+          "type": "S61",
+          "locationX": "0",
+          "locationY": "0",
+          "@id": "http://irail.be/vehicle/S614163"
+        },
+        "platform": "7",
+        "platforminfo": {
+          "name": "7",
+          "normal": "1"
+        },
+        "occupancy": {
+          "@id": "http://api.irail.be/terms/low",
+          "name": "low"
+        },
+        "departureConnection": "http://irail.be/connections/8863008/20261014/S614163"
+      },
+      {
+        "id": "3",
+        "station": "Libramont",
+        "stationinfo": {
+          "@id": "http://irail.be/stations/NMBS/008865003",
+          "id": "BE.NMBS.008865003",
+          "name": "Libramont",
+          "locationX": "5.37927",
+          "locationY": "49.920434",
+          "standardname": "Libramont"
+        },
+        "time": "1791982320",
+        "delay": "0",
+        "canceled": "0",
+        "left": "0",
+        "isExtra": "0",
+        "vehicle": "BE.NMBS.L6064",
+        "vehicleinfo": {
+          "name": "BE.NMBS.L6064",
+          "shortname": "L 6064",
+          "number": "6064",
+          "type": "L",
+          "locationX": "0",
+          "locationY": "0",
+          "@id": "http://irail.be/vehicle/L6064"
+        },
+        "platform": "8",
+        "platforminfo": {
+          "name": "8",
+          "normal": "1"
+        },
+        "occupancy": {
+          "@id": "http://api.irail.be/terms/low",
+          "name": "low"
+        },
+        "departureConnection": "http://irail.be/connections/8863008/20261014/L6064"
+      },
+      {
+        "id": "4",
+        "station": "Herstal",
+        "stationinfo": {
+          "@id": "http://irail.be/stations/NMBS/008841608",
+          "id": "BE.NMBS.008841608",
+          "name": "Herstal",
+          "locationX": "5.622761",
+          "locationY": "50.660911",
+          "standardname": "Herstal"
+        },
+        "time": "1791982380",
+        "delay": "60",
+        "canceled": "0",
+        "left": "0",
+        "isExtra": "0",
+        "vehicle": "BE.NMBS.IC3813",
+        "vehicleinfo": {
+          "name": "BE.NMBS.IC3813",
+          "shortname": "IC 3813",
+          "number": "3813",
+          "type": "IC",
+          "locationX": "0",
+          "locationY": "0",
+          "@id": "http://irail.be/vehicle/IC3813"
+        },
+        "platform": "4",
+        "platforminfo": {
+          "name": "4",
+          "normal": "0"
+        },
+        "occupancy": {
+          "@id": "http://api.irail.be/terms/low",
+          "name": "low"
+        },
+        "departureConnection": "http://irail.be/connections/8863008/20261014/IC3813"
+      },
+      {
+        "id": "5",
+        "station": "Ottignies",
+        "stationinfo": {
+          "@id": "http://irail.be/stations/NMBS/008811601",
+          "id": "BE.NMBS.008811601",
+          "name": "Ottignies",
+          "locationX": "4.56936",
+          "locationY": "50.673667",
+          "standardname": "Ottignies"
+        },
+        "time": "1791982980",
+        "delay": "0",
+        "canceled": "0",
+        "left": "0",
+        "isExtra": "0",
+        "vehicle": "BE.NMBS.L6285",
+        "vehicleinfo": {
+          "name": "BE.NMBS.L6285",
+          "shortname": "L 6285",
+          "number": "6285",
+          "type": "L",
+          "locationX": "0",
+          "locationY": "0",
+          "@id": "http://irail.be/vehicle/L6285"
+        },
+        "platform": "9",
+        "platforminfo": {
+          "name": "9",
+          "normal": "1"
+        },
+        "occupancy": {
+          "@id": "http://api.irail.be/terms/unknown",
+          "name": "unknown"
+        },
+        "departureConnection": "http://irail.be/connections/8863008/20261014/L6285"
+      }
+    ]
+  }
+}

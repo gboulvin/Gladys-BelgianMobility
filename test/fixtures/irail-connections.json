@@ -1,0 +1,170 @@
+{
+  "version": "1.4",
+  "timestamp": "1791982019",
+  "connection": [
+    {
+      "id": "0",
+      "departure": {
+        "delay": "0",
+        "station": "Namur",
+        "stationinfo": {
+          "@id": "http://irail.be/stations/NMBS/008863008",
+          "id": "BE.NMBS.008863008",
+          "name": "Namur",
+          "locationX": "4.86222",
+          "locationY": "50.468794",
+          "standardname": "Namur"
+        },
+        "time": "1791983760",
+        "vehicle": "BE.NMBS.IC2136",
+        "vehicleinfo": {
+          "name": "BE.NMBS.IC2136",
+          "shortname": "IC 2136",
+          "number": "2136",
+          "type": "IC",
+          "locationX": "0",
+          "locationY": "0",
+          "@id": "http://irail.be/vehicle/IC2136"
+        },
+        "platform": "9",
+        "platforminfo": {
+          "name": "9",
+          "normal": "1"
+        },
+        "canceled": "0",
+        "departureConnection": "http://irail.be/connections/8863008/20261014/IC2136",
+        "direction": {
+          "name": "Bruxelles-Midi"
+        },
+        "left": "0",
+        "walking": "0",
+        "occupancy": {
+          "@id": "http://api.irail.be/terms/low",
+          "name": "low"
+        }
+      },
+      "arrival": {
+        "delay": "0",
+        "station": "Bruxelles-Central",
+        "stationinfo": {
+          "@id": "http://irail.be/stations/NMBS/008813003",
+          "id": "BE.NMBS.008813003",
+          "name": "Bruxelles-Central",
+          "locationX": "4.356801",
+          "locationY": "50.845658",
+          "standardname": "Brussel-Centraal/Bruxelles-Central"
+        },
+        "time": "1791987720",
+        "vehicle": "BE.NMBS.IC2136",
+        "vehicleinfo": {
+          "name": "BE.NMBS.IC2136",
+          "shortname": "IC 2136",
+          "number": "2136",
+          "type": "IC",
+          "locationX": "0",
+          "locationY": "0",
+          "@id": "http://irail.be/vehicle/IC2136"
+        },
+        "platform": "4",
+        "platforminfo": {
+          "name": "4",
+          "normal": "1"
+        },
+        "canceled": "0",
+        "direction": {
+          "name": "Bruxelles-Midi"
+        },
+        "arrived": "0",
+        "walking": "0",
+        "departureConnection": "http://irail.be/connections/8813003/20261014/IC2136"
+      },
+      "duration": "3960",
+      "remarks": {
+        "number": "0",
+        "remark": []
+      }
+    },
+    {
+      "id": "1",
+      "departure": {
+        "delay": "0",
+        "station": "Namur",
+        "stationinfo": {
+          "@id": "http://irail.be/stations/NMBS/008863008",
+          "id": "BE.NMBS.008863008",
+          "name": "Namur",
+          "locationX": "4.86222",
+          "locationY": "50.468794",
+          "standardname": "Namur"
+        },
+        "time": "1791985440",
+        "vehicle": "BE.NMBS.IC2436",
+        "vehicleinfo": {
+          "name": "BE.NMBS.IC2436",
+          "shortname": "IC 2436",
+          "number": "2436",
+          "type": "IC",
+          "locationX": "0",
+          "locationY": "0",
+          "@id": "http://irail.be/vehicle/IC2436"
+        },
+        "platform": "9",
+        "platforminfo": {
+          "name": "9",
+          "normal": "1"
+        },
+        "canceled": "0",
+        "departureConnection": "http://irail.be/connections/8863008/20261014/IC2436",
+        "direction": {
+          "name": "Tournai"
+        },
+        "left": "0",
+        "walking": "0",
+        "occupancy": {
+          "@id": "http://api.irail.be/terms/low",
+          "name": "low"
+        }
+      },
+      "arrival": {
+        "delay": "0",
+        "station": "Bruxelles-Central",
+        "stationinfo": {
+          "@id": "http://irail.be/stations/NMBS/008813003",
+          "id": "BE.NMBS.008813003",
+          "name": "Bruxelles-Central",
+          "locationX": "4.356801",
+          "locationY": "50.845658",
+          "standardname": "Brussel-Centraal/Bruxelles-Central"
+        },
+        "time": "1791989520",
+        "vehicle": "BE.NMBS.IC2436",
+        "vehicleinfo": {
+          "name": "BE.NMBS.IC2436",
+          "shortname": "IC 2436",
+          "number": "2436",
+          "type": "IC",
+          "locationX": "0",
+          "locationY": "0",
+          "@id": "http://irail.be/vehicle/IC2436"
+        },
+        "platform": "4",
+        "platforminfo": {
+          "name": "4",
+          "normal": "1"
+        },
+        "canceled": "0",
+        "direction": {
+          "name": "Tournai"
+        },
+        "arrived": "0",
+        "walking": "0",
+        "departureConnection": "http://irail.be/connections/8813003/20261014/IC2436"
+      },
+      "duration": "4080",
+      "remarks": {
+        "number": "0",
+        "remark": []
+      }
+    }
+  ]
+}

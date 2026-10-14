@@ -1,0 +1,54 @@
+{
+  "version": "1.4",
+  "timestamp": "1791982017",
+  "station": [
+    {
+      "@id": "http://irail.be/stations/NMBS/008813003",
+      "id": "BE.NMBS.008813003",
+      "name": "Bruxelles-Central",
+      "locationX": "4.356801",
+      "locationY": "50.845658",
+      "standardname": "Brussel-Centraal/Bruxelles-Central"
+    },
+    {
+      "@id": "http://irail.be/stations/NMBS/008814001",
+      "id": "BE.NMBS.008814001",
+      "name": "Bruxelles-Midi",
+      "locationX": "4.336531",
+      "locationY": "50.835707",
+      "standardname": "Brussel-Zuid/Bruxelles-Midi"
+    },
+    {
+      "@id": "http://irail.be/stations/NMBS/008872009",
+      "id": "BE.NMBS.008872009",
+      "name": "Charleroi-Central",
+      "locationX": "4.438567",
+      "locationY": "50.40471",
+      "standardname": "Charleroi-Central"
+    },
+    {
+      "@id": "http://irail.be/stations/NMBS/008841004",
+      "id": "BE.NMBS.008841004",
+      "name": "Liège-Guillemins",
+      "locationX": "5.566695",
+      "locationY": "50.62455",
+      "standardname": "Liège-Guillemins"
+    },
+    {
+      "@id": "http://irail.be/stations/NMBS/008863008",
+      "id": "BE.NMBS.008863008",
+      "name": "Namur",
+      "locationX": "4.86222",
+      "locationY": "50.468794",
+      "standardname": "Namur"
+    },
+    {
+      "@id": "http://irail.be/stations/NMBS/008811601",
+      "id": "BE.NMBS.008811601",
+      "name": "Ottignies",
+      "locationX": "4.56936",
+      "locationY": "50.673667",
+      "standardname": "Ottignies"
+    }
+  ]
+}
