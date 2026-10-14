@@ -10,6 +10,8 @@ the notes of the version's GitHub Release.
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-10-14
+
 ### Added
 
 - Follow train stations and metro, tram and bus stops anywhere in Belgium:
@@ -28,4 +30,5 @@ the notes of the version's GitHub Release.
 - Configuration screen buttons: search a stop identifier, test the connection.
 - English, French, German and Spanish texts and documentation.
 
-[Unreleased]: https://github.com/gboulvin/Gladys-BelgianMobility/commits/main
+[Unreleased]: https://github.com/gboulvin/Gladys-BelgianMobility/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/gboulvin/Gladys-BelgianMobility/releases/tag/v1.0.0
