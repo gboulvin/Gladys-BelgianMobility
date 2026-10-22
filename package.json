@@ -1,6 +1,6 @@
 {
   "name": "gladys-belgian-mobility",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "Gladys Assistant external integration: real-time departures, disruptions and journeys of Belgian public transport (SNCB/NMBS, STIB/MIVB, De Lijn, TEC).",
   "type": "module",
