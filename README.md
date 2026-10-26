@@ -15,7 +15,7 @@ your metro, tram and bus stops, plus the disruptions of the SNCB rail network.
 | TEC         | Walloon metro, trams and buses (RT) | [Transitous](https://transitous.org) (GTFS + GTFS-RT)  |
 
 **No account, no API key**: both sources are free and open. Cloud integration
-(`"transports": ["cloud"]`), Gladys **5.1.0 or later**, texts in **English,
+(`"transports": ["cloud"]`), Gladys **5.3.0 or later**, texts in **English,
 French, German and Spanish**.
 
 User documentation (re-hosted by Gladys, linked from the Configuration screen):
