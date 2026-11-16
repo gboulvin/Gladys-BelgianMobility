@@ -48,6 +48,9 @@ export function buildNetworkDevice(gladys) {
         external_id: ids.feature(NETWORK_FEATURES.LATEST_DISRUPTION),
         category: DEVICE_FEATURE_CATEGORIES.TEXT,
         type: DEVICE_FEATURE_TYPES.TEXT.TEXT,
+        // No range, but Gladys stores min / max as NOT NULL columns.
+        min: 0,
+        max: 0,
         read_only: true,
         has_feedback: false,
         keep_history: false,
